@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+<body>
+<h3>Song</h3>
+<p>
+  <a th:href="@{/song/create}">
+    Add new song
+  </a>
+</p>
+<table id = "songs">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Artist</th>
+    <th>Category</th>
+    <th>Link</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    <th>Detail</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="row,rowStat : ${songs}">
+    <td th:text="${row.getId()}"></td>
+    <td th:text="${row.getName()}"></td>
+    <td th:text="${row.getArtist()}"></td>
+    <td th:text="${row.getCategory()}"></td>
+    <td><a th:href="@{row.getLink()}"></a></td>
+    <td><a th:href="@{/song/{id}/edit(id=${row.getId()})}">edit</a></td>
+    <td><a th:href="@{/song/{id}/delete(id=${row.getId()})}">delete</a></td>
+    <td><a th:href="@{/song/{id}/detail(id=${row.getId()})}">detail</a></td>
+  </tr>
+  </tbody>
+</table>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
